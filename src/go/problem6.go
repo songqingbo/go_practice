@@ -17,12 +17,35 @@ n 是正整数,范围在 [1, 10000].
 数组中的元素范围在 [-10000, 10000].
  */
 
- // finish but waste time
+// 耗费时间
 func arrayPairSum(nums []int) int {
 	number := 0
 	sort.Ints(nums)
 	for i := 0; i < len(nums); i += 2 {
 		number += nums[i]
+	}
+	return number
+}
+
+func arrayPairSumBetter(nums []int) int {
+	// 利用数组的index强排序，O(n)即可完成
+	var tempArray [20001] int
+	// 初始化数组
+	for _, x := range nums {
+		tempArray[x+10000] ++
+	}
+	number := 0
+	flag := true
+	// 遍历新数组
+	for i := 0; i < 20001; i++ {
+		// 一个
+		for tempArray[i] > 0 {
+			if flag {
+				number += i - 10000
+			}
+			flag = !flag
+			tempArray[i] --
+		}
 	}
 	return number
 }
