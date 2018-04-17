@@ -24,9 +24,9 @@ package _go
  */
 
 func hammingDistance(x int, y int) int {
-	variableX,number := x^y,0
-	for variableX != 0{
-		variableX &= variableX-1
+	variableX, number := x^y, 0
+	for variableX != 0 {
+		variableX &= variableX - 1
 		number ++
 	}
 	return number
